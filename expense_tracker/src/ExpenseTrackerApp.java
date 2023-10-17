@@ -54,11 +54,14 @@ public class ExpenseTrackerApp {
       
       // Call controller to add transaction
       Boolean filtered = controller.applyFilter(0, category, "category");
-      
       if (!filtered) {
-        JOptionPane.showMessageDialog(view, "Filter Category: No transaction found");
+        JOptionPane.showMessageDialog(view, "Invalid amount or category entered");
         view.toFront();
       }
+    });
+
+    view.getClearFilterBtn().addActionListener(e -> {
+      Boolean cleared = controller.clearFilter();
     });
 
   }

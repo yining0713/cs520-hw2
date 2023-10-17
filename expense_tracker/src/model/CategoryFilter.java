@@ -14,7 +14,7 @@ public class CategoryFilter implements TransactionFilter{
         List<Transaction> transactionsFiltered = new ArrayList<Transaction>();
         for (int i = 0; i < transactions.size(); i++) {
             for (Transaction t: transactions) {
-                if (t.getCategory() == category) {
+                if (t.getCategory().trim().equals(category.trim())) {
                     transactionsFiltered.add(t);
                 }
             }

@@ -63,7 +63,7 @@ public class ExpenseTrackerController {
       if (!InputValidation.isValidCategory(category)) {
       return false;
       }
-      transactionFiltered = new AmountFilter(amount).filter(model.getTransactions());
+      transactionFiltered = new CategoryFilter(category).filter(model.getTransactions());
     }
 
     // Get the index 
@@ -90,12 +90,19 @@ public class ExpenseTrackerController {
       Transaction currMatch = match.get(indexMatch);
 
       if (currBase == currMatch) {
+        System.out.println("They are the same!");
         matchedIndice[indexMatch] = indexBase;
       }
       indexBase++;
       indexMatch++;
     }
     return matchedIndice;
+  }
+
+  public Boolean clearFilter() {
+    int[] emptyArray = {};
+    view.highlightTable(emptyArray);
+    return true;
   }
   // Other controller methods
 }

@@ -130,6 +130,10 @@ public class ExpenseTrackerView extends JFrame {
    * Highlight the rows of this.model whose index is given by the input.
    */
   public void highlightTable(int[] rowsToColor){
+    for (int i: rowsToColor){
+      System.out.println(i);
+    }
+    
       Color color = new Color(177, 255, 168);
 
       TableCellRenderer customRenderer = new CustomRowColorRenderer(rowsToColor, color);
@@ -150,6 +154,10 @@ public class ExpenseTrackerView extends JFrame {
 
   public JButton getApplyCategoryFilterBtn() {
     return applyCategoryFilterBtn;
+  }
+
+  public JButton getClearFilterBtn() {
+    return clearFilterBtn;
   }
 
 
