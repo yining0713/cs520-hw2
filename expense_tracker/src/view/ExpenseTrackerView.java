@@ -125,9 +125,8 @@ public class ExpenseTrackerView extends JFrame {
     }  
 
   /**
-   * 
+   * Highlight the rows of this.model whose index is given by the input
    * @param rowsToColor
-   * Highlight the rows of this.model whose index is given by the input.
    */
   public void highlightTable(int[] rowsToColor){
     for (int i: rowsToColor){

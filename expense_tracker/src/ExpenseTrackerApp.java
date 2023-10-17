@@ -34,34 +34,45 @@ public class ExpenseTrackerApp {
       }
     });
 
+    // Handle Apply Amount Filter clicks
     view.getApplyAmountFilterBtn().addActionListener(e -> {
 
-      // Get transaction data from view
+      // get amount from amountFilterField
       double amount = view.getAmountFilterField();
       
-      // Call controller to add transaction
+      // Call controller to apply filter
       Boolean filtered = controller.applyFilter(amount, null, "amount");
       
+      // Show error message when the input is invalid
       if (!filtered) {
         JOptionPane.showMessageDialog(view, "Invalid amount or category entered");
         view.toFront();
       } 
     });
 
+    // Handle Apply Category Filter clicks
     view.getApplyCategoryFilterBtn().addActionListener(e -> {
-      // Get transaction data from view
+      // get category from categoryFilterField
       String category = view.getCategoryFilterField();
       
-      // Call controller to add transaction
+      // Call controller to apply filter
       Boolean filtered = controller.applyFilter(0, category, "category");
+
+      // Show error message when the input is invalid
       if (!filtered) {
         JOptionPane.showMessageDialog(view, "Invalid amount or category entered");
         view.toFront();
       }
     });
 
+    // Handle Clear Filter clicks
     view.getClearFilterBtn().addActionListener(e -> {
       Boolean cleared = controller.clearFilter();
+      //This should always be true. Putting this here as a placeholder since we might add error handling here.
+      if (!cleared) {
+        JOptionPane.showMessageDialog(view, "Unexpected issue");
+        view.toFront();
+      }
     });
 
   }

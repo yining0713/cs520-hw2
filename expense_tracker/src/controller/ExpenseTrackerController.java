@@ -48,6 +48,14 @@ public class ExpenseTrackerController {
     return true;
   }
 
+  /**
+   * Call InputValidation to check the input
+   * Get the row indice that match the filter and highlight the rows in the view
+   * @param amount the amount from user input
+   * @param category the category from user input
+   * @param filterField the field to filter by, depending on which button the user clicks
+   * @return true if the input is valid, false otherwise
+   */
   public Boolean applyFilter(double amount, String category, String filterField) {
 
     List<Transaction> transactionFiltered = new ArrayList<Transaction>();
@@ -98,6 +106,10 @@ public class ExpenseTrackerController {
     return matchedIndice;
   }
 
+  /**
+   * Remove all the highlighting
+   * @return true; act as a placeholder for error handling
+   */
   public Boolean clearFilter() {
     int[] emptyArray = {};
     view.highlightTable(emptyArray);
