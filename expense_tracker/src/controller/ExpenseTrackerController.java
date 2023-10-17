@@ -1,7 +1,10 @@
 package controller;
 
 import view.ExpenseTrackerView;
+import model.AmountFilter;
+import model.CategoryFilter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -45,21 +48,54 @@ public class ExpenseTrackerController {
     return true;
   }
 
-  public String applyFilter(double amount, String category) {
-    String errorType = null;
-    if (!InputValidation.isValidAmount(amount)) {
-      errorType = "Input";
-      return errorType;
-    }
-    if (!InputValidation.isValidCategory(category)) {
-      errorType = "Input";
-      return errorType;
+  public Boolean applyFilter(double amount, String category, String filterField) {
+
+    List<Transaction> transactionFiltered = new ArrayList<Transaction>();
+
+    if (filterField == "amount") {
+      if (!InputValidation.isValidAmount(amount)) {
+      return false;
+      }
+      transactionFiltered = new AmountFilter(amount).filter(model.getTransactions());
     }
 
-    System.out.println(amount);
-    System.out.println(category);
-    return errorType;
+    if (filterField == "category") {
+      if (!InputValidation.isValidCategory(category)) {
+      return false;
+      }
+      transactionFiltered = new AmountFilter(amount).filter(model.getTransactions());
+    }
+
+    // Get the index 
+    // Getting the index here instead of at the filter in case multiple rounds of filters need to be done in the future
+    int[] rowsFiltered = getMatchingIndices(model.getTransactions(), transactionFiltered);
+    view.highlightTable(rowsFiltered);
+
+    return true;
     }
   
+  /**
+   * 
+   * @param base the entire list of transactions
+   * @param match the filtered list of transactions
+   * @return the array of indice of all transactions that matched the filtered ones
+   */
+  public int[] getMatchingIndices(List<Transaction> base, List<Transaction> match){
+    int indexBase = 0;
+    int indexMatch = 0;
+    int[] matchedIndice = new int[match.size()];
+
+    while(indexBase != base.size() && indexMatch != match.size()) {
+      Transaction currBase = base.get(indexBase);
+      Transaction currMatch = match.get(indexMatch);
+
+      if (currBase == currMatch) {
+        matchedIndice[indexMatch] = indexBase;
+      }
+      indexBase++;
+      indexMatch++;
+    }
+    return matchedIndice;
+  }
   // Other controller methods
 }

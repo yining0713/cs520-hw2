@@ -3,6 +3,7 @@ package view;
 import javax.swing.*;
 import javax.swing.JFormattedTextField.AbstractFormatterFactory;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 
 import controller.InputValidation;
 
@@ -116,13 +117,26 @@ public class ExpenseTrackerView extends JFrame {
         // Add total row
         Object[] totalRow = {"Total", null, null, totalCost};
         model.addRow(totalRow);
-  
+      
       // Fire table update
       transactionsTable.updateUI();
   
     }  
-  
+    
+  /**
+   * 
+   * @param rowsToColor
+   * Highlight the rows of this.model whose index is given by the input.
+   */
+  public void highlightTable(int[] rowsToColor){
+      Color color = new Color(177, 255, 168);
 
+      TableCellRenderer customRenderer = new CustomRowColorRenderer(rowsToColor, color);
+      transactionsTable.setDefaultRenderer(Object.class, customRenderer);
+      transactionsTable.getColumnModel().getColumn(0).setCellRenderer(new CustomRowColorRenderer(rowsToColor, color));
+
+      transactionsTable.updateUI();
+  }
   
   
   public JButton getAddTransactionBtn() {
