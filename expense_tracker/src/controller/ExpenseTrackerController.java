@@ -84,17 +84,16 @@ public class ExpenseTrackerController {
     int indexBase = 0;
     int indexMatch = 0;
     int[] matchedIndice = new int[match.size()];
-
+    
     while(indexBase != base.size() && indexMatch != match.size()) {
       Transaction currBase = base.get(indexBase);
       Transaction currMatch = match.get(indexMatch);
 
       if (currBase == currMatch) {
-        System.out.println("They are the same!");
         matchedIndice[indexMatch] = indexBase;
+        indexMatch++;
       }
       indexBase++;
-      indexMatch++;
     }
     return matchedIndice;
   }
