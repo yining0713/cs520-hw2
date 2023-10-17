@@ -16,8 +16,12 @@ public class ExpenseTrackerView extends JFrame {
 
   private JTable transactionsTable;
   private JButton addTransactionBtn;
+  private JButton applyFilterBtn;
+  private JButton clearFilterBtn;
   private JFormattedTextField amountField;
   private JTextField categoryField;
+  private JFormattedTextField amountFilterField;
+  private JTextField categoryFilterField;
   private DefaultTableModel model;
   
 
@@ -29,6 +33,8 @@ public class ExpenseTrackerView extends JFrame {
     this.model = new DefaultTableModel(columnNames, 0);
 
     addTransactionBtn = new JButton("Add Transaction");
+    applyFilterBtn = new JButton("Apply Filter");
+    clearFilterBtn = new JButton("Clear Filter");
 
     // Create UI components
     JLabel amountLabel = new JLabel("Amount:");
@@ -37,9 +43,21 @@ public class ExpenseTrackerView extends JFrame {
     amountField = new JFormattedTextField(format);
     amountField.setColumns(10);
 
-    
+
     JLabel categoryLabel = new JLabel("Category:");
     categoryField = new JTextField(10);
+
+
+    JLabel amountFilterLabel = new JLabel("Amount Filter:");
+
+    amountFilterField = new JFormattedTextField(format);
+    amountFilterField.setColumns(10);
+    amountFilterField.setMaximumSize(new Dimension(Integer.MAX_VALUE, amountFilterField.getPreferredSize().height));
+
+
+    JLabel categoryFilterLabel = new JLabel("Category Filter:");
+    categoryFilterField = new JTextField(10);
+    categoryFilterField.setMaximumSize(new Dimension(Integer.MAX_VALUE, categoryFilterField.getPreferredSize().height));
 
     // Create table
     transactionsTable = new JTable(model);
@@ -54,11 +72,22 @@ public class ExpenseTrackerView extends JFrame {
   
     JPanel buttonPanel = new JPanel();
     buttonPanel.add(addTransactionBtn);
+
+    JPanel filterPanel = new JPanel();
+    filterPanel.setLayout(new BoxLayout(filterPanel, BoxLayout.Y_AXIS));
+    filterPanel.add(amountFilterLabel);
+    filterPanel.add(amountFilterField);
+    filterPanel.add(categoryFilterLabel);
+    filterPanel.add(categoryFilterField);
+    filterPanel.add(applyFilterBtn);
+    filterPanel.add(clearFilterBtn);
+    
   
     // Add panels to frame
     add(inputPanel, BorderLayout.NORTH);
     add(new JScrollPane(transactionsTable), BorderLayout.CENTER); 
     add(buttonPanel, BorderLayout.SOUTH);
+    add(filterPanel, BorderLayout.EAST);
   
     // Set frame properties
     setSize(400, 300);
