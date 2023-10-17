@@ -44,6 +44,22 @@ public class ExpenseTrackerController {
     refresh();
     return true;
   }
+
+  public String applyFilter(double amount, String category) {
+    String errorType = null;
+    if (!InputValidation.isValidAmount(amount)) {
+      errorType = "Input";
+      return errorType;
+    }
+    if (!InputValidation.isValidCategory(category)) {
+      errorType = "Input";
+      return errorType;
+    }
+
+    System.out.println(amount);
+    System.out.println(category);
+    return errorType;
+    }
   
   // Other controller methods
 }

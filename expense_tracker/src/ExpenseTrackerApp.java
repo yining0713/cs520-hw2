@@ -34,6 +34,32 @@ public class ExpenseTrackerApp {
       }
     });
 
+    view.getApplyAmountFilterBtn().addActionListener(e -> {
+      // Get transaction data from view
+      double amount = view.getAmountFilterField();
+      
+      // Call controller to add transaction
+      String filtered = controller.applyFilter(amount, null);
+      
+      if (true) {
+        JOptionPane.showMessageDialog(view, "Filter Amount: No transaction found");
+        view.toFront();
+      }
+    });
+
+    view.getApplyCategoryFilterBtn().addActionListener(e -> {
+      // Get transaction data from view
+      String category = view.getCategoryFilterField();
+      
+      // Call controller to add transaction
+      String filtered = controller.applyFilter(0, category);
+      
+      if (true) {
+        JOptionPane.showMessageDialog(view, "Filter Category: No transaction found");
+        view.toFront();
+      }
+    });
+
   }
 
 }

@@ -16,7 +16,8 @@ public class ExpenseTrackerView extends JFrame {
 
   private JTable transactionsTable;
   private JButton addTransactionBtn;
-  private JButton applyFilterBtn;
+  private JButton applyAmountFilterBtn;
+  private JButton applyCategoryFilterBtn;
   private JButton clearFilterBtn;
   private JFormattedTextField amountField;
   private JTextField categoryField;
@@ -33,7 +34,8 @@ public class ExpenseTrackerView extends JFrame {
     this.model = new DefaultTableModel(columnNames, 0);
 
     addTransactionBtn = new JButton("Add Transaction");
-    applyFilterBtn = new JButton("Apply Filter");
+    applyAmountFilterBtn = new JButton("Apply Amount Filter");
+    applyCategoryFilterBtn = new JButton("Apply Category Filter");
     clearFilterBtn = new JButton("Clear Filter");
 
     // Create UI components
@@ -77,9 +79,10 @@ public class ExpenseTrackerView extends JFrame {
     filterPanel.setLayout(new BoxLayout(filterPanel, BoxLayout.Y_AXIS));
     filterPanel.add(amountFilterLabel);
     filterPanel.add(amountFilterField);
+    filterPanel.add(applyAmountFilterBtn);
     filterPanel.add(categoryFilterLabel);
     filterPanel.add(categoryFilterField);
-    filterPanel.add(applyFilterBtn);
+    filterPanel.add(applyCategoryFilterBtn);
     filterPanel.add(clearFilterBtn);
     
   
@@ -125,6 +128,16 @@ public class ExpenseTrackerView extends JFrame {
   public JButton getAddTransactionBtn() {
     return addTransactionBtn;
   }
+
+  public JButton getApplyAmountFilterBtn() {
+    return applyAmountFilterBtn;
+  }
+
+  public JButton getApplyCategoryFilterBtn() {
+    return applyCategoryFilterBtn;
+  }
+
+
   public DefaultTableModel getTableModel() {
     return model;
   }
@@ -154,4 +167,26 @@ public class ExpenseTrackerView extends JFrame {
   public void setCategoryField(JTextField categoryField) {
     this.categoryField = categoryField;
   }
+
+  public double getAmountFilterField() {
+    if(amountFilterField.getText().isEmpty()) {
+      return 0;
+    }else {
+    double amount = Double.parseDouble(amountFilterField.getText());
+    return amount;
+    }
+  }
+
+  public void setAmountFilterField(JFormattedTextField amountField) {
+    this.amountField = amountField;
+  }
+
+  public String getCategoryFilterField() {
+    return categoryFilterField.getText();
+  }
+
+  public void setCategoryFilterField(JTextField categoryFilterField) {
+    this.categoryFilterField = categoryFilterField;
+  }
+
 }
