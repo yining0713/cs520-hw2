@@ -54,6 +54,7 @@ public class ExpenseTrackerView extends JFrame {
     JLabel amountFilterLabel = new JLabel("Amount Filter:");
 
     amountFilterField = new JFormattedTextField(format);
+    amountFilterField.setFocusLostBehavior(JFormattedTextField.PERSIST);
     amountFilterField.setColumns(10);
     amountFilterField.setMaximumSize(new Dimension(Integer.MAX_VALUE, amountFilterField.getPreferredSize().height));
 
@@ -122,7 +123,7 @@ public class ExpenseTrackerView extends JFrame {
       transactionsTable.updateUI();
   
     }  
-    
+
   /**
    * 
    * @param rowsToColor
