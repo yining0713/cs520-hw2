@@ -22,6 +22,8 @@ public class CustomRowColorRenderer extends DefaultTableCellRenderer {
             if (row == rowToColor) {
                 c.setBackground(color);
                 break;
+            } else {
+                c.setBackground(table.getBackground());
             }
         }
 
