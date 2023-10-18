@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Collections;
 
 public class ExpenseTrackerModel {
 
@@ -18,9 +19,10 @@ public class ExpenseTrackerModel {
   public void removeTransaction(Transaction t) {
     transactions.remove(t);
   }
-
+  
+  // Answer to Modularity part b
   public List<Transaction> getTransactions() {
-    return transactions;
+    return Collections.unmodifiableList(transactions);
   }
 
 }
