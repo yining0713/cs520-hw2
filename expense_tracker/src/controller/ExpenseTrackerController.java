@@ -1,6 +1,7 @@
 package controller;
 
 import view.ExpenseTrackerView;
+import model.TransactionFilter;
 import model.AmountFilter;
 import model.CategoryFilter;
 
@@ -56,7 +57,7 @@ public class ExpenseTrackerController {
    * @param filterField the field to filter by, depending on which button the user clicks
    * @return true if the input is valid, false otherwise
    */
-  public Boolean applyFilter(double amount, String category, String filterField) {
+  public Boolean applyFilter(double amount, String category, String filterField, TransactionFilter transactionFilter) {
 
     List<Transaction> transactionFiltered = new ArrayList<Transaction>();
 
@@ -64,14 +65,14 @@ public class ExpenseTrackerController {
       if (!InputValidation.isValidAmount(amount)) {
       return false;
       }
-      transactionFiltered = new AmountFilter(amount).filter(model.getTransactions());
+      transactionFiltered = transactionFilter.filter(model.getTransactions());
     }
 
     if (filterField == "category") {
       if (!InputValidation.isValidCategory(category)) {
       return false;
       }
-      transactionFiltered = new CategoryFilter(category).filter(model.getTransactions());
+      transactionFiltered = transactionFilter.filter(model.getTransactions());
     }
 
     // Get the index 

@@ -5,9 +5,14 @@ import controller.ExpenseTrackerController;
 import model.ExpenseTrackerModel;
 import view.ExpenseTrackerView;
 import model.Transaction;
+import model.TransactionFilter;
+import model.AmountFilter;
+import model.CategoryFilter;
 import controller.InputValidation;
 
 public class ExpenseTrackerApp {
+
+  private static TransactionFilter transactionFilter;
 
   public static void main(String[] args) {
     
@@ -39,9 +44,10 @@ public class ExpenseTrackerApp {
 
       // get amount from amountFilterField
       double amount = view.getAmountFilterField();
+      transactionFilter = new AmountFilter(amount);
       
       // Call controller to apply filter
-      Boolean filtered = controller.applyFilter(amount, null, "amount");
+      Boolean filtered = controller.applyFilter(amount, null, "amount", transactionFilter);
       
       // Show error message when the input is invalid
       if (!filtered) {
@@ -54,9 +60,10 @@ public class ExpenseTrackerApp {
     view.getApplyCategoryFilterBtn().addActionListener(e -> {
       // get category from categoryFilterField
       String category = view.getCategoryFilterField();
+      transactionFilter = new CategoryFilter(category);
       
       // Call controller to apply filter
-      Boolean filtered = controller.applyFilter(0, category, "category");
+      Boolean filtered = controller.applyFilter(0, category, "category", transactionFilter);
 
       // Show error message when the input is invalid
       if (!filtered) {
