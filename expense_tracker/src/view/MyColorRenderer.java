@@ -7,7 +7,7 @@ import java.awt.*;
 /**
  * Customize coloring scheme
  */
-public class CustomRowColorRenderer extends DefaultTableCellRenderer {
+public class MyColorRenderer extends DefaultTableCellRenderer {
     private int[] rowsToColor; // Store the row indices to be colored
     private Color color; // Color for the specified rows
 
@@ -16,7 +16,7 @@ public class CustomRowColorRenderer extends DefaultTableCellRenderer {
      * @param rowsToColor
      * @param color 
      */
-    public CustomRowColorRenderer(int[] rowsToColor, Color color) {
+    public MyColorRenderer(int[] rowsToColor, Color color) {
         this.rowsToColor = rowsToColor;
         this.color = color;
     }

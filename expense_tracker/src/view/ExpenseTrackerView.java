@@ -129,15 +129,12 @@ public class ExpenseTrackerView extends JFrame {
    * @param rowsToColor
    */
   public void highlightTable(int[] rowsToColor){
-    for (int i: rowsToColor){
-      System.out.println(i);
-    }
-    
+
       Color color = new Color(177, 255, 168);
 
-      TableCellRenderer customRenderer = new CustomRowColorRenderer(rowsToColor, color);
-      transactionsTable.setDefaultRenderer(Object.class, customRenderer);
-      transactionsTable.getColumnModel().getColumn(0).setCellRenderer(new CustomRowColorRenderer(rowsToColor, color));
+      //TableCellRenderer customRenderer = new CustomRowColorRenderer(rowsToColor, color);
+      transactionsTable.setDefaultRenderer(Object.class, new MyColorRenderer(rowsToColor, color));
+      transactionsTable.getColumnModel().getColumn(0).setCellRenderer(new MyColorRenderer(rowsToColor, color));
 
       transactionsTable.updateUI();
   }
