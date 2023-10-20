@@ -20,7 +20,18 @@ public class ExpenseTrackerModel {
   }
 
   public List<Transaction> getTransactions() {
-    return transactions;
+    //return Collections.unmodifiableList(transactions);
+    List<Transaction> copyOfTransactions = new ArrayList<>();
+    for (Transaction originalTransaction : transactions) {
+      // Create a new Transaction object with the same values as the original
+      Transaction copyTransaction = new Transaction(
+        originalTransaction.getAmount(),
+        originalTransaction.getCategory()
+      );
+      copyOfTransactions.add(copyTransaction);
+
+      return copyOfTransactions;
+    }
   }
 
 }
