@@ -22,7 +22,18 @@ public class ExpenseTrackerModel {
   
   // Answer to Modularity part b
   public List<Transaction> getTransactions() {
-    return Collections.unmodifiableList(transactions);
+    //return Collections.unmodifiableList(transactions);
+    List<Transaction> copyOfTransactions = new ArrayList<>();
+    for (Transaction originalTransaction : transactions) {
+      // Create a new Transaction object with the same values as the original
+      Transaction copyTransaction = new Transaction(
+        originalTransaction.getAmount(),
+        originalTransaction.getCategory()
+      );
+      copyOfTransactions.add(copyTransaction);
+
+      return copyOfTransactions;
+    }
   }
 
 }
