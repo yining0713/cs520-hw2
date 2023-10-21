@@ -98,7 +98,7 @@ public class ExpenseTrackerController {
       Transaction currBase = base.get(indexBase);
       Transaction currMatch = match.get(indexMatch);
 
-      if (currBase == currMatch) {
+      if (currBase.equals(currMatch)) {
         matchedIndice[indexMatch] = indexBase;
         indexMatch++;
       }

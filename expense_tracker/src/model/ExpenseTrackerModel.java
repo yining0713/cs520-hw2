@@ -28,10 +28,7 @@ public final class ExpenseTrackerModel {
     for (Transaction originalTransaction : transactions) 
     {
       // Create a new Transaction object with the same values as the original
-      Transaction copyTransaction = new Transaction(
-        originalTransaction.getAmount(),
-        originalTransaction.getCategory()
-      );
+      Transaction copyTransaction = originalTransaction.deepCopy();
       copyOfTransactions.add(copyTransaction);
     }
     return copyOfTransactions;

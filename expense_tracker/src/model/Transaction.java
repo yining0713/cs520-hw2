@@ -13,7 +13,7 @@ public final class Transaction {
   // Answer to Modularity part a
   private final double amount;
   private final String category;
-  private final String timestamp;
+  private String timestamp;
 
   public Transaction(double amount, String category) {
     this.amount = amount;
@@ -47,6 +47,19 @@ public final class Transaction {
   private String generateTimestamp() {
     SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm");  
     return sdf.format(new Date());
+  }
+
+  public boolean equals(Transaction t){
+    if (this.amount == t.getAmount() && this.category.equals(t.getCategory()) && this.timestamp.equals(t.getTimestamp())){
+      return true;
+    }
+    return false;
+  }
+
+  public Transaction deepCopy(){
+    Transaction copy = new Transaction(amount, category);
+    copy.timestamp = timestamp;
+    return copy;
   }
 
 }
