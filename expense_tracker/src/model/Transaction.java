@@ -49,6 +49,12 @@ public final class Transaction {
     return sdf.format(new Date());
   }
 
+  /**
+   * 
+   * @param t another Transaction object to compare with this one.
+   * equal means that the values of amount, category, and timestamp are all the same
+   * @return
+   */
   public boolean equals(Transaction t){
     if (this.amount == t.getAmount() && this.category.equals(t.getCategory()) && this.timestamp.equals(t.getTimestamp())){
       return true;
@@ -56,6 +62,10 @@ public final class Transaction {
     return false;
   }
 
+  /**
+   * Make a deep copy of the object so that modifying the new object does not change the original one
+   * @return
+   */
   public Transaction deepCopy(){
     Transaction copy = new Transaction(amount, category);
     copy.timestamp = timestamp;
